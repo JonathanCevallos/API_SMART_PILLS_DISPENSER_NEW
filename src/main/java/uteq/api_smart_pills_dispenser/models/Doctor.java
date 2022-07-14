@@ -11,8 +11,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "patient")
-public class Patient {
+@Table(name = "doctor")
+public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -21,12 +21,20 @@ public class Patient {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "birt_date")
-    private int birt_date;
+    @Column(name = "specialism")
+    private int specialism;
 
-    @Column(name = "gender")
-    private String gender;
+    @Column(name = "state")
+    private boolean state;
 
+    @Column(name = "phone_number")
+    private String phone_number;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "direction")
+    private String direction;
 
  /*   @ManyToOne
     @JoinColumn(name = "id_usuario")
