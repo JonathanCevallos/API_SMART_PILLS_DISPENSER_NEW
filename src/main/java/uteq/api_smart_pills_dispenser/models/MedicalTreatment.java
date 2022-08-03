@@ -15,27 +15,36 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "patient")
-public class Patient {
+@Table(name = "medical_treatment")
+public class MedicalTreatment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
+    @Column(name = "Description")
+    private String description;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "registration_date")
     private Date registration_date;
 
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "registration_of_expiry")
+    private Date registration_of_expiry;
+
+
     @Column(name = "state")
     private Boolean state;
 
     @ManyToOne
-    @JoinColumn(name = "id_person")
-    Person person;
+    @JoinColumn(name = "id_doctor")
+    Doctor doctor;
 
     @ManyToOne
-    @JoinColumn(name = "id_carer")
-    Carer carer;
+    @JoinColumn(name = "id_patient")
+    Patient patient;
 
 }

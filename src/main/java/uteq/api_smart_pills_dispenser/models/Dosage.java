@@ -13,8 +13,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "pillsStocktaking")
-public class PillsStocktaking {
+@Table(name = "dosage")
+public class Dosage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,14 +26,21 @@ public class PillsStocktaking {
     @Column(name = "registration_of_expiry")
     private Date registration_of_expiry;
 
-    @Column(name = "stock")
-    private int stock;
+    @Column(name = "quantity")
+    private int quantity;
 
+    @Column(name = "hour")
+    private String hour;
 
+    @Column(name = "state")
+    private Boolean state;
 
- /*   @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;*/
+    @ManyToOne
+    @JoinColumn(name = "id_pill")
+    Pill pill;
 
+    @ManyToOne
+    @JoinColumn(name = "id_medical_treatment")
+    MedicalTreatment medicalTreatment;
 
 }

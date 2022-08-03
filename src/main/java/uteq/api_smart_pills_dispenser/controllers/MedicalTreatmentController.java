@@ -4,26 +4,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uteq.api_smart_pills_dispenser.models.Patient;
-import uteq.api_smart_pills_dispenser.services.PacienteService;
+import uteq.api_smart_pills_dispenser.models.MedicalTreatment;
+import uteq.api_smart_pills_dispenser.services.MedicalTreatmentService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/pillsstocktakings")
+@RequestMapping("api/medical-treatment")
 @CrossOrigin("*")
-public class PillsStocktakingController {
+public class MedicalTreatmentController {
 
     @Autowired
-    private PacienteService pacienteService;
+    private MedicalTreatmentService medicalTreatmentService;
 
     //LISTAR TODO
     @GetMapping
-    public ResponseEntity<List<Patient>> getAll()
+    public ResponseEntity<List<MedicalTreatment>> getAll()
     {
         try
         {
-            return ResponseEntity.ok().body(pacienteService.findAll());
+            return ResponseEntity.ok().body(medicalTreatmentService.findAll());
         }
         catch (Exception e)
         {
@@ -33,11 +33,11 @@ public class PillsStocktakingController {
 
     //BUSCAR POR ID
     @RequestMapping(value = "{id}")
-    public ResponseEntity<Patient> finfById(@PathVariable("id")int id)
+    public ResponseEntity<MedicalTreatment> finfById(@PathVariable("id")int id)
     {
         try
         {
-            return ResponseEntity.ok().body(pacienteService.findById(id));
+            return ResponseEntity.ok().body(medicalTreatmentService.findById(id));
         }
         catch (Exception e)
         {
@@ -47,11 +47,11 @@ public class PillsStocktakingController {
 
     //GUARDAR
     @PostMapping
-    public ResponseEntity<Patient> create (@RequestBody Patient entity)
+    public ResponseEntity<MedicalTreatment> create (@RequestBody MedicalTreatment entity)
     {
         try
         {
-            return ResponseEntity.ok().body(pacienteService.save(entity));
+            return ResponseEntity.ok().body(medicalTreatmentService.save(entity));
         }
         catch (Exception e)
         {
@@ -65,7 +65,7 @@ public class PillsStocktakingController {
     {
         try
         {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(pacienteService.delete(id));
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(medicalTreatmentService.delete(id));
         }
         catch (Exception e)
         {
@@ -75,11 +75,11 @@ public class PillsStocktakingController {
 
     //ACTUALIZAR
     @PutMapping(value =  "{id}")
-    private ResponseEntity<Patient>update(@PathVariable int id, @RequestBody Patient entity)
+    private ResponseEntity<MedicalTreatment>update(@PathVariable int id, @RequestBody MedicalTreatment entity)
     {
         try
         {
-            return ResponseEntity.ok().body(pacienteService.update(id,entity));
+            return ResponseEntity.ok().body(medicalTreatmentService.update(id,entity));
         }
         catch (Exception e)
         {

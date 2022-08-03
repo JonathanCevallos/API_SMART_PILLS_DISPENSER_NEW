@@ -1,8 +1,8 @@
 package uteq.api_smart_pills_dispenser.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uteq.api_smart_pills_dispenser.models.Doctor;
-import uteq.api_smart_pills_dispenser.repositories.DoctorRepository;
+import uteq.api_smart_pills_dispenser.models.MedicalTreatment;
+import uteq.api_smart_pills_dispenser.repositories.MedicalTreatmentRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -10,23 +10,23 @@ import java.util.Optional;
 
 @Transactional
 @Service
-public class DoctorService {
+public class MedicalTreatmentService {
     @Autowired
-    private DoctorRepository doctorRepository;
+    private MedicalTreatmentRepository medicalTreatmentRepository;
 
     //Este metodo permite listar todos los registro de la entidad.
-    public List<Doctor> findAll() throws Exception {
+    public List<MedicalTreatment> findAll() throws Exception {
         try {
-            return doctorRepository.findAll();
+            return medicalTreatmentRepository.findAll();
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
     }
 
     //Este metodo permite: Actualizar un país mediante su ID.
-    public Doctor findById(Integer id) throws Exception {
+    public MedicalTreatment findById(Integer id) throws Exception {
         try {
-            Optional<Doctor> entityOptional = doctorRepository.findById(id);
+            Optional<MedicalTreatment> entityOptional = medicalTreatmentRepository.findById(id);
             return entityOptional.get();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -34,9 +34,9 @@ public class DoctorService {
     }
 
     //Este metodo permite: guardar
-    public Doctor save(Doctor entity) throws Exception {
+    public MedicalTreatment save(MedicalTreatment entity) throws Exception {
         try {
-            entity = doctorRepository.save(entity);
+            entity = medicalTreatmentRepository.save(entity);
             return entity;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -44,12 +44,12 @@ public class DoctorService {
     }
 
     //Este metodo permite: Actualizar mediante ID
-    public Doctor update(Integer id, Doctor entity) throws Exception {
+    public MedicalTreatment update(Integer id, MedicalTreatment entity) throws Exception {
         try {
-            Optional<Doctor> entityOptional = doctorRepository.findById(id);
-            Doctor doctor = entityOptional.get();
-            doctor = doctorRepository.save(entity);
-            return doctor;
+            Optional<MedicalTreatment> entityOptional = medicalTreatmentRepository.findById(id);
+            MedicalTreatment dosage = entityOptional.get();
+            dosage = medicalTreatmentRepository.save(entity);
+            return dosage;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -58,8 +58,8 @@ public class DoctorService {
     //Este metodo permite: Eliminar mediante su ID.
     public boolean delete(Integer id) throws Exception {
         try {
-            if (doctorRepository.existsById(id)) {
-                doctorRepository.deleteById(id);
+            if (medicalTreatmentRepository.existsById(id)) {
+                medicalTreatmentRepository.deleteById(id);
                 return true;
             } else {
                 throw new Exception();

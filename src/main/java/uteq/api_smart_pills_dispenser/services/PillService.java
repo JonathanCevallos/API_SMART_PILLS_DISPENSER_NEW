@@ -1,8 +1,8 @@
 package uteq.api_smart_pills_dispenser.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uteq.api_smart_pills_dispenser.models.PillsStocktaking;
-import uteq.api_smart_pills_dispenser.repositories.PillsStocktakingRepository;
+import uteq.api_smart_pills_dispenser.models.Pill;
+import uteq.api_smart_pills_dispenser.repositories.PillRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -10,23 +10,23 @@ import java.util.Optional;
 
 @Transactional
 @Service
-public class PillsStocktakingService {
+public class PillService {
     @Autowired
-    private PillsStocktakingRepository pillsStocktakingRepository;
+    private PillRepository pillRepository;
 
     //Este metodo permite listar todos los registro de la entidad.
-    public List<PillsStocktaking> findAll() throws Exception {
+    public List<Pill> findAll() throws Exception {
         try {
-            return pillsStocktakingRepository.findAll();
+            return pillRepository.findAll();
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
     }
 
     //Este metodo permite: Actualizar un país mediante su ID.
-    public PillsStocktaking findById(Integer id) throws Exception {
+    public Pill findById(Integer id) throws Exception {
         try {
-            Optional<PillsStocktaking> entityOptional = pillsStocktakingRepository.findById(id);
+            Optional<Pill> entityOptional = pillRepository.findById(id);
             return entityOptional.get();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -34,9 +34,9 @@ public class PillsStocktakingService {
     }
 
     //Este metodo permite: guardar
-    public PillsStocktaking save(PillsStocktaking entity) throws Exception {
+    public Pill save(Pill entity) throws Exception {
         try {
-            entity = pillsStocktakingRepository.save(entity);
+            entity = pillRepository.save(entity);
             return entity;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -44,12 +44,12 @@ public class PillsStocktakingService {
     }
 
     //Este metodo permite: Actualizar mediante ID
-    public PillsStocktaking update(Integer id, PillsStocktaking entity) throws Exception {
+    public Pill update(Integer id, Pill entity) throws Exception {
         try {
-            Optional<PillsStocktaking> entityOptional = pillsStocktakingRepository.findById(id);
-            PillsStocktaking pillsStocktaking = entityOptional.get();
-            pillsStocktaking = pillsStocktakingRepository.save(entity);
-            return pillsStocktaking;
+            Optional<Pill> entityOptional = pillRepository.findById(id);
+            Pill pill = entityOptional.get();
+            pill = pillRepository.save(entity);
+            return pill;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -58,8 +58,8 @@ public class PillsStocktakingService {
     //Este metodo permite: Eliminar mediante su ID.
     public boolean delete(Integer id) throws Exception {
         try {
-            if (pillsStocktakingRepository.existsById(id)) {
-                pillsStocktakingRepository.deleteById(id);
+            if (pillRepository.existsById(id)) {
+                pillRepository.deleteById(id);
                 return true;
             } else {
                 throw new Exception();

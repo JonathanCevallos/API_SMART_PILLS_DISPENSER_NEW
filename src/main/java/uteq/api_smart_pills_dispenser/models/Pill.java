@@ -15,12 +15,18 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "patient")
-public class Patient {
+@Table(name = "pill")
+public class Pill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String description;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -29,13 +35,4 @@ public class Patient {
 
     @Column(name = "state")
     private Boolean state;
-
-    @ManyToOne
-    @JoinColumn(name = "id_person")
-    Person person;
-
-    @ManyToOne
-    @JoinColumn(name = "id_carer")
-    Carer carer;
-
 }
