@@ -12,19 +12,19 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "usuario")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name_user")
+    @Column(name = "name_user", length = 20)
     private String nameUser;
 
-    @Column(name = "password")
+    @Column(name = "password", length = 12)
     private String password;
 
     @Column(name = "state")
-    private Boolean state;
+    private Boolean state = true;
 }

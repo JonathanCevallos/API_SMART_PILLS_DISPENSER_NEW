@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -20,11 +22,19 @@ public class Dosage {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "registration_date")
-    private Date registration_date;
 
-    @Column(name = "registration_of_expiry")
-    private Date registration_of_expiry;
+    @Column(name = "registration_date")
+    private LocalDateTime registration_date;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "end_date")
+    private Date endDate;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "start_date")
+    private Date starDate;
 
     @Column(name = "quantity")
     private int quantity;
@@ -33,7 +43,7 @@ public class Dosage {
     private String hour;
 
     @Column(name = "state")
-    private Boolean state;
+    private Boolean state = true;
 
     @ManyToOne
     @JoinColumn(name = "id_pill")
@@ -42,5 +52,10 @@ public class Dosage {
     @ManyToOne
     @JoinColumn(name = "id_medical_treatment")
     MedicalTreatment medicalTreatment;
+
+    @PrePersist
+    public void PrePersist() {
+        registration_date = LocalDateTime.now();
+    }
 
 }

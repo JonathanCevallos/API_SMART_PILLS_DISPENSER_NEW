@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -22,17 +22,21 @@ public class Pill {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 50)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 50)
     private String description;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+
     @Column(name = "registration_date")
-    private Date registration_date;
+    private LocalDateTime registration_date;
 
     @Column(name = "state")
-    private Boolean state;
+    private Boolean state = true;
+
+    @PrePersist
+    public void PrePersist() {
+        registration_date = LocalDateTime.now();
+    }
 }

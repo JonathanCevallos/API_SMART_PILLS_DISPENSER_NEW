@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -22,35 +22,34 @@ public class Doctor {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 70)
     private String name;
 
-    @Column(name = "specialism")
+    @Column(name = "specialism", length = 25)
     private int specialism;
 
     @Column(name = "state")
-    private boolean state;
+    private boolean state = true;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", length = 15)
     private String phone_number;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 50)
     private String email;
 
-    @Column(name = "direction")
+    @Column(name = "direction", length = 150)
     private String direction;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+
     @Column(name = "registration_date")
-    private Date registration_date;
+    private LocalDateTime registration_date;
 
     @ManyToOne
     @JoinColumn(name = "id_person")
     Person person;
 
- /*   @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;*/
-
+    @PrePersist
+    public void PrePersist() {
+        registration_date = LocalDateTime.now();
+    }
 }

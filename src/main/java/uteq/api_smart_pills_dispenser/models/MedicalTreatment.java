@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -22,22 +22,21 @@ public class MedicalTreatment {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "Description")
+    @Column(name = "Description", length = 255)
     private String description;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+
     @Column(name = "registration_date")
-    private Date registration_date;
+    private LocalDateTime registration_date;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(name = "registration_of_expiry")
-    private Date registration_of_expiry;
+    @Column(name = "start_date")
+    private Date startDate;
 
 
-    @Column(name = "state")
-    private Boolean state;
+    @Column(name = "end_date")
+    private Boolean endDate = true;
 
     @ManyToOne
     @JoinColumn(name = "id_doctor")
@@ -46,5 +45,10 @@ public class MedicalTreatment {
     @ManyToOne
     @JoinColumn(name = "id_patient")
     Patient patient;
+
+    @PrePersist
+    public void PrePersist() {
+        registration_date = LocalDateTime.now();
+    }
 
 }
