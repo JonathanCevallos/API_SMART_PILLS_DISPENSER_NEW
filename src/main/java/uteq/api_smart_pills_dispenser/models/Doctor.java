@@ -44,9 +44,6 @@ public class Doctor {
     @Column(name = "registration_date")
     private LocalDateTime registration_date;
 
-    @ManyToOne
-    @JoinColumn(name = "id_person")
-    Person person;
 
     @PrePersist
     public void PrePersist() {
