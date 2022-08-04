@@ -26,7 +26,7 @@ public class Doctor {
     private String name;
 
     @Column(name = "specialism", length = 25)
-    private int specialism;
+    private String specialism;
 
     @Column(name = "state")
     private boolean state = true;
