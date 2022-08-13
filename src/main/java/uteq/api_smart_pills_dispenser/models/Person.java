@@ -42,8 +42,4 @@ public class Person {
     @Column(name = "state")
     private Boolean state = true;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user")
-    User user;
-
 }

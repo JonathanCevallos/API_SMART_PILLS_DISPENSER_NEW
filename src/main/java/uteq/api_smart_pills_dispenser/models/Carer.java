@@ -4,13 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.annotation.PreDestroy;
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -32,8 +28,8 @@ public class Carer {
     private LocalDateTime registration_date;
 
     @ManyToOne
-    @JoinColumn(name = "id_user")
-    User user;
+    @JoinColumn(name = "id_person")
+    Person person;
 
 
     @PrePersist

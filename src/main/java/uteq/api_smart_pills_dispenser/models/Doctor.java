@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -39,7 +38,6 @@ public class Doctor {
 
     @Column(name = "direction", length = 150)
     private String direction;
-
 
     @Column(name = "registration_date")
     private LocalDateTime registration_date;
