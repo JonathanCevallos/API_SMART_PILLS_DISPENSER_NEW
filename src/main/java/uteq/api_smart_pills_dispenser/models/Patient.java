@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -28,9 +29,16 @@ public class Patient {
     @Column(name = "state")
     private Boolean state = true;
 
-    @ManyToOne
-    @JoinColumn(name = "id_person")
-    Person person;
+    @Column(name = "name", length = 70)
+    private String name;
+
+    @Column(name = "gender", length = 10)
+    private String gender;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "birth_date")
+    private Date birth_date;
 
     @ManyToOne
     @JoinColumn(name = "id_carer")
