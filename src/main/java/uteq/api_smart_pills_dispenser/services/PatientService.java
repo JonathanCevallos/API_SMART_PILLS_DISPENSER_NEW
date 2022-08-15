@@ -1,4 +1,5 @@
 package uteq.api_smart_pills_dispenser.services;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uteq.api_smart_pills_dispenser.models.Patient;
@@ -22,6 +23,16 @@ public class PatientService {
             throw new Exception(ex.getMessage());
         }
     }
+
+    //Este metodo permite listar todos los registro de pacientes que tiene el cuidador.
+    public List<Patient> findAllPatiens(int id) throws Exception {
+        try {
+            return patientRepository.findByCarer_Id(id);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+    }
+
 
     //Este metodo permite: Actualizar un país mediante su ID.
     public Patient findById(Integer id) throws Exception {

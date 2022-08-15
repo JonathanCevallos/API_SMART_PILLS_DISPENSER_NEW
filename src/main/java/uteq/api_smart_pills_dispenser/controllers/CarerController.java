@@ -5,7 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uteq.api_smart_pills_dispenser.models.Carer;
+import uteq.api_smart_pills_dispenser.models.Patient;
 import uteq.api_smart_pills_dispenser.services.CarerService;
+import uteq.api_smart_pills_dispenser.services.PatientService;
 
 import java.util.List;
 
@@ -17,6 +19,9 @@ public class CarerController {
     @Autowired
     private CarerService carerService;
 
+    @Autowired
+    PatientService patientService;
+
     //LISTAR TODO
     @GetMapping
     public ResponseEntity<List<Carer>> getAll()
@@ -24,6 +29,20 @@ public class CarerController {
         try
         {
             return ResponseEntity.ok().body(carerService.findAll());
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    //LISTAR TODO LOS PACIENTES QUE TIENE
+    @GetMapping("/patiens")
+    public ResponseEntity<List<Patient>> getAll(int id)
+    {
+        try
+        {
+            return ResponseEntity.ok().body(patientService.findAllPatiens(id));
         }
         catch (Exception e)
         {

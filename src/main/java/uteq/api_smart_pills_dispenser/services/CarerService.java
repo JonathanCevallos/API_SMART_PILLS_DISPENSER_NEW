@@ -2,7 +2,9 @@ package uteq.api_smart_pills_dispenser.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uteq.api_smart_pills_dispenser.models.Carer;
+import uteq.api_smart_pills_dispenser.models.Patient;
 import uteq.api_smart_pills_dispenser.repositories.CarerRepository;
+import uteq.api_smart_pills_dispenser.repositories.PatientRepositirory;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -22,6 +24,7 @@ public class CarerService {
             throw new Exception(ex.getMessage());
         }
     }
+
 
     //Este metodo permite: Actualizar un país mediante su ID.
     public Carer findById(Integer id) throws Exception {
