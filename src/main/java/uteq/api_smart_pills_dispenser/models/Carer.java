@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -34,10 +35,12 @@ public class Carer {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Patient.class)
-    @JoinColumn(name = "id_", referencedColumnName = "id_")
-    private Set<Patient> patiens;
-    //---holaaa
+//    @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Patient.class)
+//    @JoinColumn(name = "id_", referencedColumnName = "id_")
+//    private Set<Patient> patiens;
+//    //---holaaa
+@OneToMany(cascade = CascadeType.ALL, mappedBy = "carer")
+private List<Patient> patiens;
 
     @PrePersist
     public void PrePersist() {
