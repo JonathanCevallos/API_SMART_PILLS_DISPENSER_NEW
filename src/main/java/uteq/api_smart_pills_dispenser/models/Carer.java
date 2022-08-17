@@ -38,12 +38,12 @@ public class Carer {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Patient.class)
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    private List<Patient> patiens;
+//    @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Patient.class)
+//    @JoinColumn(name = "id", referencedColumnName = "id")
+//    private List<Patient> patiens;
 //    //---holaaa
-//    @OneToMany(mappedBy = "carer" , cascade = CascadeType.ALL)
-//    Set<Patient> patients;
+    @OneToMany(mappedBy = "id_carer" , cascade = CascadeType.ALL)
+    Set<Patient> patients;
 
 
     @PrePersist
