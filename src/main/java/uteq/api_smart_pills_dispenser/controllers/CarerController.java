@@ -36,19 +36,6 @@ public class CarerController {
         }
     }
 
-    //LISTAR TODO LOS PACIENTES QUE TIENE
-    @RequestMapping(value = "patients{id}")
-    public ResponseEntity<List<Patient>> getAll(int id)
-    {
-        try
-        {
-            return ResponseEntity.ok().body(patientService.findAllPatiens(id));
-        }
-        catch (Exception e)
-        {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
     //BUSCAR POR ID
     @RequestMapping(value = "{id}")

@@ -1,5 +1,6 @@
 package uteq.api_smart_pills_dispenser.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@AllArgsConstructor
 @Data
 @NoArgsConstructor
 
