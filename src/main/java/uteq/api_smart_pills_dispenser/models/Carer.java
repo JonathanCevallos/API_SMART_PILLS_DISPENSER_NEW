@@ -1,10 +1,10 @@
 package uteq.api_smart_pills_dispenser.models;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -15,7 +15,7 @@ import java.util.Set;
 public class Carer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "state")
@@ -35,15 +35,14 @@ public class Carer {
     @Column(name = "password")
     private String password;
 
-//    @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Patient.class)
-//    @JoinColumn(name = "id_", referencedColumnName = "id_")
-//    private Set<Patient> patiens;
-//    //---holaaa
-@OneToMany(cascade = CascadeType.ALL, mappedBy = "carer")
-private List<Patient> patiens;
+    @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Patient.class)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Set<Patient> patiens;
+    //---holaaa
+
 
     @PrePersist
     public void PrePersist() {
-       registration_date = LocalDateTime.now();
+        registration_date = LocalDateTime.now();
     }
 }
