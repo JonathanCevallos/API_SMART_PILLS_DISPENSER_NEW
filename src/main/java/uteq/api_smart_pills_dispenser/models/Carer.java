@@ -14,7 +14,7 @@ import java.util.Set;
 public class Carer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_")
     private int id;
 
     @Column(name = "state")
@@ -35,7 +35,7 @@ public class Carer {
     private String password;
 
     @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Patient.class)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "id_", referencedColumnName = "id_")
     private Set<Patient> patiens;
     //---holaaa
 
