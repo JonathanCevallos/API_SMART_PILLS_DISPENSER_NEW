@@ -41,7 +41,7 @@ public class Patient {
     @Column(name = "birth_date")
     private Date birth_date;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "id_carer")
     Carer carer;
