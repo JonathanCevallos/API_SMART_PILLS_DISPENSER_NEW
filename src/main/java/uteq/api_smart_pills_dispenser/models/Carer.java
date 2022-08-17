@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -38,6 +39,10 @@ public class Carer {
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Patient.class)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Set<Patient> patiens;
 
     @PrePersist
     public void PrePersist() {

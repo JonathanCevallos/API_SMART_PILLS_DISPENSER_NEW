@@ -37,7 +37,7 @@ public class CarerController {
     }
 
     //LISTAR TODO LOS PACIENTES QUE TIENE
-    @GetMapping("patients")
+    @RequestMapping(value = "patients{id}")
     public ResponseEntity<List<Patient>> getAll(int id)
     {
         try
