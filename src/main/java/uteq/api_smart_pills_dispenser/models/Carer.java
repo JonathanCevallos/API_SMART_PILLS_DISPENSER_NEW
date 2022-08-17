@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -38,12 +38,12 @@ public class Carer {
     @Column(name = "password")
     private String password;
 
-//    @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Patient.class)
+    //    @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Patient.class)
 //    @JoinColumn(name = "id", referencedColumnName = "id")
 //    private List<Patient> patiens;
 //    //---holaaa
-    @OneToMany(mappedBy = "carer" , cascade = CascadeType.ALL)
-    Set<Patient> patients;
+    @OneToMany(mappedBy = "carer", cascade = CascadeType.ALL)
+    Set<Patient> patients = new HashSet<>();
 
 
     @PrePersist
