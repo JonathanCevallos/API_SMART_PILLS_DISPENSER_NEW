@@ -19,8 +19,6 @@ public class Carer {
 
     @Column(name = "state")
     private Boolean state = true;
-
-
     @Column(name = "registration_date")
     private LocalDateTime registration_date;
 
@@ -39,6 +37,7 @@ public class Carer {
     @OneToMany(cascade = {CascadeType.ALL}, targetEntity = Patient.class)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private Set<Patient> patiens;
+    //---
 
     @PrePersist
     public void PrePersist() {
