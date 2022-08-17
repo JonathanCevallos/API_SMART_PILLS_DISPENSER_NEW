@@ -42,7 +42,7 @@ public class Carer {
 //    @JoinColumn(name = "id", referencedColumnName = "id")
 //    private List<Patient> patiens;
 //    //---holaaa
-    @OneToMany(mappedBy = "id_carer" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "carer" , cascade = CascadeType.ALL)
     Set<Patient> patients;
 
 
