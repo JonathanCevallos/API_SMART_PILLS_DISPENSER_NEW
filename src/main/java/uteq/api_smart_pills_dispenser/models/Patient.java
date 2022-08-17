@@ -1,5 +1,6 @@
 package uteq.api_smart_pills_dispenser.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,6 +41,7 @@ public class Patient {
     @Column(name = "birth_date")
     private Date birth_date;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_carer")
     Carer carer;
