@@ -40,9 +40,9 @@ public class Patient {
     @Column(name = "birth_date")
     private Date birth_date;
 
-//    @ManyToOne
-//    @JoinColumn(name = "id_carer")
-//    Carer carer;
+    @ManyToOne
+    @JoinColumn(name = "id_carer")
+    Carer carer;
 
     @PrePersist
     public void PrePersist() {
