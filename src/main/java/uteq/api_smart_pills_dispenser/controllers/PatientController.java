@@ -30,8 +30,22 @@ public class PatientController {
         }
     }
 
+    @RequestMapping(value = "carer{id}")
+    public ResponseEntity<List<Patient>> getAllPatientsForCarer(@PathVariable("id")int id)
+    {
+        try
+        {
+            return ResponseEntity.ok().body(patientService.findAllPatiens(id));
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     //BUSCAR POR ID
     @RequestMapping(value = "{id}")
+
     public ResponseEntity<Patient> finfById(@PathVariable("id")int id)
     {
         try
