@@ -8,6 +8,8 @@ import uteq.api_smart_pills_dispenser.services.PatientService;
 
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 @RestController
 @RequestMapping("api/patient")
 @CrossOrigin("*")
@@ -30,7 +32,7 @@ public class PatientController {
         }
     }
 
-    @RequestMapping(value = "carer/{id}")
+    @RequestMapping(value = "/bar/{id}", method = GET)
     public ResponseEntity<List<Patient>> getAllPatientsForCarer(@PathVariable("id")int id)
     {
         try
