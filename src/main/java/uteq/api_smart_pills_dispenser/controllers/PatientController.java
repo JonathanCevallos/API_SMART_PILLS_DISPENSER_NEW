@@ -30,7 +30,7 @@ public class PatientController {
         }
     }
 
-    @RequestMapping(value = "carer{id}")
+    @RequestMapping(value = "carer/{id}")
     public ResponseEntity<List<Patient>> getAllPatientsForCarer(@PathVariable("id")int id)
     {
         try
