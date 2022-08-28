@@ -38,8 +38,8 @@ public class Carer {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "carer", cascade = CascadeType.ALL)
-    Set<Patient> patients = new HashSet<>();
+    //@OneToMany(mappedBy = "carer", cascade = CascadeType.ALL)
+    //Set<Patient> patients = new HashSet<>();
 
 
     @PrePersist

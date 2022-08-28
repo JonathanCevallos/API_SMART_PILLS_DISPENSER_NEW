@@ -42,9 +42,14 @@ public class Patient {
     private Date birth_date;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    //@JoinColumn(name = "id_carer")
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    //Carer carer;
+
+
+    @ManyToOne
     @JoinColumn(name = "id_carer")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     Carer carer;
 
     @PrePersist
