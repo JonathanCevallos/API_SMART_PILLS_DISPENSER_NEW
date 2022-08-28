@@ -26,7 +26,7 @@ public class CarerService {
     }
 
 
-    //Este metodo permite: Actualizar un país mediante su ID.
+    //Este metodo permite: Byscar un país mediante su ID.
     public Carer findById(Integer id) throws Exception {
         try {
             Optional<Carer> entityOptional = carerRepository.findById(id);
