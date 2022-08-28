@@ -11,7 +11,7 @@ import uteq.api_smart_pills_dispenser.services.CarerService;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/carer/patiens")
+@RequestMapping("api/carer/patients")
 @CrossOrigin("*")
 public class CarerPatiensController {
     @Autowired
