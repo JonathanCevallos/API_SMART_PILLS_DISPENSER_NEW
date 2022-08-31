@@ -36,7 +36,10 @@ public class MedicalTreatment {
 
 
     @Column(name = "end_date")
-    private Boolean endDate = true;
+    private Date endDate;
+
+    @Column(name = "state")
+    private boolean state;
 
     @ManyToOne
     @JoinColumn(name = "id_doctor")
