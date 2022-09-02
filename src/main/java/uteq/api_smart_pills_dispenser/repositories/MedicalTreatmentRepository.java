@@ -12,7 +12,5 @@ import java.util.List;
 
 @Repository
 public interface MedicalTreatmentRepository extends JpaRepository<MedicalTreatment, Integer> {
-    @Query(value="select *from dosage inner join",
-            nativeQuery = true)
-    List<String> findalala();
+ List<MedicalTreatment>findByPatient_Id(int id);
 }
