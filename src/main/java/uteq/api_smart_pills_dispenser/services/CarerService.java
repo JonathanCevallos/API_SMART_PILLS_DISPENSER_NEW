@@ -40,14 +40,13 @@ public class CarerService {
     //Este metodo permite: guardar
     public Carer save(Carer entity) throws Exception {
         try {
-
-            Carer carer = null;
-            carer.setName(entity.getName());
-            carer.setEmail(entity.getEmail());
+            Carer carer=null;
+            carer.setName(entity.getName().trim().toUpperCase());
+            carer.setEmail(entity.getEmail().trim().toUpperCase());
             carer.setRegistration_date(entity.getRegistration_date());
-            carer.setPhone_number(entity.getPhone_number());
+            carer.setPhone_number(entity.getPhone_number().trim().toUpperCase());
             carer.setState(false);
-            carer.setPassword(entity.getPassword());
+            carer.setPassword(entity.getPassword().trim());
             String randonCode = RandomString.make(8);
             carer.setVerificationCode(randonCode);
             carer = carerRepository.save(carer);
