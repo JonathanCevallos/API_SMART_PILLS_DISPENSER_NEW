@@ -50,7 +50,7 @@ public class CarerService {
             carer.setPassword(entity.getPassword());
             String randonCode = RandomString.make(8);
             carer.setVerificationCode(randonCode);
-            entity = carerRepository.save(carer);
+            carer = carerRepository.save(carer);
             return carer;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
