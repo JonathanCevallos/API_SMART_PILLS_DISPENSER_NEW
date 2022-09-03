@@ -42,25 +42,26 @@ public class CarerService {
     //Este metodo permite: guardar
     public Carer save(Carer entity) throws Exception {
         try {
+            //se optinene la contraseña del usuario en texto plano
             String pass = entity.getPassword();
+            //se encripta la contraseña del usuario
             String passEncrip = passwordEncoder.encode(pass);
+            //numero random para la verificacion por correo electronico
             String randonCode = RandomString.make(8);
-            entity.setVerificationCode(randonCode);
-            entity.setState(false);
-            //entity.setPassword(passEncrip);
-            entity = carerRepository.save(entity);
-            //Carer carer = new Carer();
-            //carer.setName(entity.getName().trim().toUpperCase());
-            //carer.setEmail(entity.getEmail().trim().toUpperCase());
-            //carer.setRegistration_date(entity.getRegistration_date());
-            //carer.setPhone_number(entity.getPhone_number().trim().toUpperCase());
-            //carer.setState(false);
-            //carer.setPassword(passEncrip);
 
-            //carer.setVerificationCode(randonCode);
-            //
-            //carer = carerRepository.save(carer);
-            return entity;
+            //entity.setVerificationCode(randonCode);
+            //entity.setState(false);
+            //entity = carerRepository.save(entity);
+            Carer carer = new Carer();
+            carer.setName(entity.getName().trim().toUpperCase());
+            carer.setEmail(entity.getEmail().trim().toUpperCase());
+            carer.setRegistration_date(entity.getRegistration_date());
+            carer.setPhone_number(entity.getPhone_number().trim().toUpperCase());
+            carer.setState(false);
+            carer.setPassword(passEncrip);
+            carer.setVerificationCode(randonCode.toUpperCase());
+            carer = carerRepository.save(carer);
+            return carer;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
