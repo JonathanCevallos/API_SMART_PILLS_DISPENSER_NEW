@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @AllArgsConstructor
 @Data
@@ -22,7 +21,7 @@ public class Carer {
     private int id;
 
     @Column(name = "state")
-    private Boolean state = true;
+    private Boolean state;
     @Column(name = "registration_date")
     private LocalDateTime registration_date;
 
