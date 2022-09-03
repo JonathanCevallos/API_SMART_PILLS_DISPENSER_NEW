@@ -38,6 +38,10 @@ public class Carer {
     @Column(name = "password")
     private String password;
 
+    @Column(name="verification_code",length = 8)
+    private String verificationCode;
+
+
     //@OneToMany(mappedBy = "carer", cascade = CascadeType.ALL)
     //Set<Patient> patients = new HashSet<>();
 
