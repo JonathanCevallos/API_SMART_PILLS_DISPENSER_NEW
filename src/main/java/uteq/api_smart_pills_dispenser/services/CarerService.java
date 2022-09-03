@@ -2,12 +2,18 @@ package uteq.api_smart_pills_dispenser.services;
 
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import uteq.api_smart_pills_dispenser.models.Carer;
 import uteq.api_smart_pills_dispenser.repositories.CarerRepository;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.sound.midi.MidiMessage;
 import javax.transaction.Transactional;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +22,9 @@ import java.util.Optional;
 public class CarerService {
     @Autowired
     private CarerRepository carerRepository;
+    @Autowired
+    private JavaMailSender mailSender;
+
 
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -61,10 +70,29 @@ public class CarerService {
             carer.setPassword(passEncrip);
             carer.setVerificationCode(randonCode.toUpperCase());
             carer = carerRepository.save(carer);
+            sendVerificationEmail(carer);
             return carer;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
+    }
+
+    public  void sendVerificationEmail(Carer carer) throws MessagingException, UnsupportedEncodingException {
+        String subject = "Please verify your registration";
+        String senderName= "Support Team (SMART PILLS DISPENSER)";
+        String mailContent="<p>Dear"+carer.getName()+",</p>";
+        mailContent += "<p>Please enter this code in the application to verify your account:</p>";
+        String code = carer.getVerificationCode();
+        mailContent +=" " + code + " ";
+        mailContent +="<p>Tank you<br>The Smart Pills Dispenser Team</p>" ;
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        helper.setFrom("smartpillsdispenser@gmail.com", senderName);
+        helper.setTo(carer.getEmail());
+        helper.setSubject(subject);
+        helper.setText(mailContent,true);
+        mailSender.send(message);
     }
 
     //Este metodo permite: Actualizar mediante ID
