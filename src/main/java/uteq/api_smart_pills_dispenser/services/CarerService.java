@@ -1,11 +1,11 @@
 package uteq.api_smart_pills_dispenser.services;
+
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import uteq.api_smart_pills_dispenser.models.Carer;
-import uteq.api_smart_pills_dispenser.models.Patient;
 import uteq.api_smart_pills_dispenser.repositories.CarerRepository;
-import uteq.api_smart_pills_dispenser.repositories.PatientRepositirory;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -16,6 +16,8 @@ import java.util.Optional;
 public class CarerService {
     @Autowired
     private CarerRepository carerRepository;
+
+    private BCryptPasswordEncoder passwordEncoder;
 
     //Este metodo permite listar todos los registro de la entidad.
     public List<Carer> findAll() throws Exception {
@@ -40,7 +42,9 @@ public class CarerService {
     //Este metodo permite: guardar
     public Carer save(Carer entity) throws Exception {
         try {
-            Carer carer=new Carer();
+            String pass = entity.getPassword().trim();
+            String passEncrip = passwordEncoder.encode(pass);
+            Carer carer = new Carer();
             carer.setName(entity.getName().trim().toUpperCase());
             carer.setEmail(entity.getEmail().trim().toUpperCase());
             carer.setRegistration_date(entity.getRegistration_date());
@@ -48,7 +52,7 @@ public class CarerService {
             carer.setState(false);
             carer.setPassword(entity.getPassword().trim());
             String randonCode = RandomString.make(8);
-            carer.setVerificationCode(randonCode.toUpperCase());
+            //
             carer = carerRepository.save(carer);
             return carer;
         } catch (Exception e) {
