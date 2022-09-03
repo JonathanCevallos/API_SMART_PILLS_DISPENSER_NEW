@@ -21,7 +21,7 @@ public class Carer {
     private int id;
 
     @Column(name = "state")
-    private Boolean state;
+    private Boolean state ;
     @Column(name = "registration_date")
     private LocalDateTime registration_date;
 
