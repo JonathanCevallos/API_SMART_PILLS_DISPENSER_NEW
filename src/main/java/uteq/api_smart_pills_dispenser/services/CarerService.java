@@ -52,6 +52,7 @@ public class CarerService {
             carer.setState(false);
             carer.setPassword(passEncrip);
             String randonCode = RandomString.make(8);
+            carer.setVerificationCode(randonCode);
             //
             carer = carerRepository.save(carer);
             return carer;
