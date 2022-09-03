@@ -44,18 +44,22 @@ public class CarerService {
         try {
             String pass = entity.getPassword().trim();
             String passEncrip = passwordEncoder.encode(pass);
-            Carer carer = new Carer();
-            carer.setName(entity.getName().trim().toUpperCase());
-            carer.setEmail(entity.getEmail().trim().toUpperCase());
-            carer.setRegistration_date(entity.getRegistration_date());
-            carer.setPhone_number(entity.getPhone_number().trim().toUpperCase());
-            carer.setState(false);
-            carer.setPassword(passEncrip);
             String randonCode = RandomString.make(8);
-            carer.setVerificationCode(randonCode);
+            entity.setVerificationCode(randonCode);
+            entity.setState(false);
+            entity.setPassword(passEncrip);
+            //Carer carer = new Carer();
+            //carer.setName(entity.getName().trim().toUpperCase());
+            //carer.setEmail(entity.getEmail().trim().toUpperCase());
+            //carer.setRegistration_date(entity.getRegistration_date());
+            //carer.setPhone_number(entity.getPhone_number().trim().toUpperCase());
+            //carer.setState(false);
+            //carer.setPassword(passEncrip);
+
+            //carer.setVerificationCode(randonCode);
             //
-            carer = carerRepository.save(carer);
-            return carer;
+            //carer = carerRepository.save(carer);
+            return entity;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
