@@ -47,7 +47,8 @@ public class CarerService {
             String randonCode = RandomString.make(8);
             entity.setVerificationCode(randonCode);
             entity.setState(false);
-            //entity.setPassword(passEncrip);
+            entity.setPassword(passEncrip);
+            entity = carerRepository.save(entity);
             //Carer carer = new Carer();
             //carer.setName(entity.getName().trim().toUpperCase());
             //carer.setEmail(entity.getEmail().trim().toUpperCase());
