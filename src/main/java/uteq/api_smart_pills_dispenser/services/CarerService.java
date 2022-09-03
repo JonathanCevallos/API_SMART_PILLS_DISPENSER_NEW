@@ -42,7 +42,7 @@ public class CarerService {
     //Este metodo permite: guardar
     public Carer save(Carer entity) throws Exception {
         try {
-            String pass = entity.getPassword().trim();
+            String pass = entity.getPassword();
             String passEncrip = passwordEncoder.encode(pass);
             String randonCode = RandomString.make(8);
             entity.setVerificationCode(randonCode);
