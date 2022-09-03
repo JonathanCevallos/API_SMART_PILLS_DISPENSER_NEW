@@ -40,7 +40,7 @@ public class CarerService {
     //Este metodo permite: guardar
     public Carer save(Carer entity) throws Exception {
         try {
-            Carer carer=null;
+            Carer carer=new Carer();
             carer.setName(entity.getName().trim().toUpperCase());
             carer.setEmail(entity.getEmail().trim().toUpperCase());
             carer.setRegistration_date(entity.getRegistration_date());
