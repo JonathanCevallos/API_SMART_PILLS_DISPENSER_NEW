@@ -48,7 +48,7 @@ public class CarerService {
             carer.setState(false);
             carer.setPassword(entity.getPassword().trim());
             String randonCode = RandomString.make(8);
-            carer.setVerificationCode(randonCode);
+            carer.setVerificationCode(randonCode.toUpperCase());
             carer = carerRepository.save(carer);
             return carer;
         } catch (Exception e) {
