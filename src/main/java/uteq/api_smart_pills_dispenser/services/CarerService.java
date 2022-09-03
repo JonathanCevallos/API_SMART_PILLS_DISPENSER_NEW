@@ -50,7 +50,7 @@ public class CarerService {
             carer.setRegistration_date(entity.getRegistration_date());
             carer.setPhone_number(entity.getPhone_number().trim().toUpperCase());
             carer.setState(false);
-            carer.setPassword(entity.getPassword().trim());
+            carer.setPassword(passEncrip);
             String randonCode = RandomString.make(8);
             //
             carer = carerRepository.save(carer);
