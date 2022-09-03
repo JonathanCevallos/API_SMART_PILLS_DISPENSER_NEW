@@ -1,4 +1,5 @@
 package uteq.api_smart_pills_dispenser.services;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uteq.api_smart_pills_dispenser.models.Carer;
@@ -39,8 +40,18 @@ public class CarerService {
     //Este metodo permite: guardar
     public Carer save(Carer entity) throws Exception {
         try {
-            entity = carerRepository.save(entity);
-            return entity;
+
+            Carer carer = null;
+            carer.setName(entity.getName());
+            carer.setEmail(entity.getEmail());
+            carer.setRegistration_date(entity.getRegistration_date());
+            carer.setPhone_number(entity.getPhone_number());
+            carer.setState(false);
+            carer.setPassword(entity.getPassword());
+            String randonCode = RandomString.make(8);
+            carer.setVerificationCode(randonCode);
+            entity = carerRepository.save(carer);
+            return carer;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

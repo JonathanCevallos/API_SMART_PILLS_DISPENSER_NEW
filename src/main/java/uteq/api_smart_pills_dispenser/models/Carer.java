@@ -38,7 +38,7 @@ public class Carer {
     @Column(name = "password")
     private String password;
 
-    @Column(name="verification_code",length = 8)
+    @Column(name="verification_code",length = 8, updatable = false)
     private String verificationCode;
 
 
